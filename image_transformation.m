@@ -49,7 +49,7 @@ axis on; axis([-300 580 -280 300])
 %axis on; axis([0 660 -160 460])
 subplot(1,3,3), imshow(I_a); title('c) Atstatytas')
 
-I1thresh = I_a >= (10/255); %// As an example - Note the division by 255 as you did im2double
+I1thresh = I_a >= 100; %// As an example - Note the division by 255 as you did im2double
 %// Removed as this is no longer needed 
 %// sizeI = size(I1);
 nonZeroCols = find(any(I1thresh)); %// Change
@@ -57,11 +57,6 @@ minCol = min(nonZeroCols); %// Change
 maxCol = max(nonZeroCols); %// Change
 I_b = I_a(:, minCol : maxCol, :); 
 I2thresh = I1thresh(:, minCol : maxCol, :);  % // Note new variable
-%// Commented out. Don't see this being used anywhere
-%//nonZero = sum(any(I1thresh,2)); %// Note the change in any
-
-%// Removed as this is no longer needed
-%//sizeI2 = size(I2);
 nonZeroRows = find(any(I2thresh, 2)); %// Change
 minRow = min(nonZeroRows); %// Change
 maxRow = max(nonZeroRows); %// Change
@@ -72,4 +67,11 @@ subplot(1,3,1), imshow(I_a);title('Figure 1');
 subplot(1,3,2), imshow(I_b);title('Figure 2');
 subplot(1,3,3), imshow(I_c);title('Figure 3');
 
+figure;
+imshow(I_c);
+
+
 % palyginti gautus paveiksliukus su psnr
+
+[ps1, snr1] = psnr(I, I_c);
+fprintf('\n psnr %0.4f \n', snr1);
