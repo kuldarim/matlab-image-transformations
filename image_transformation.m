@@ -76,4 +76,6 @@ imshow(I_c);
 
 % psnr palyginimas
 [ps1, snr1] = psnr(I, I_c);
+s = ssim(I, I_c);
 fprintf('\n psnr %0.4f \n', snr1);
+fprintf('\n ssim %0.4f \n', s);
